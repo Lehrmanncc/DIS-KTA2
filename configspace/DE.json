@@ -1,0 +1,35 @@
+{
+  "hyperparameters": [
+    {
+      "name": "cr",
+      "type": "uniform_float",
+      "log": false,
+      "lower": 0.0,
+      "upper": 1.0,
+      "default": 0.5,
+      "q": null
+    },
+    {
+      "name": "f",
+      "type": "uniform_float",
+      "log": false,
+      "lower": 0.0,
+      "upper": 2.0,
+      "default": 1.0,
+      "q": null
+    },
+    {
+      "name": "pop_num",
+      "type": "uniform_int",
+      "log": false,
+      "lower": 10,
+      "upper": 500,
+      "default": 255,
+      "q": null
+    }
+  ],
+  "conditions": [],
+  "forbiddens": [],
+  "python_module_version": "0.6.1",
+  "json_format_version": 0.4
+}

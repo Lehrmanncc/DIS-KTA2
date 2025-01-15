@@ -1,0 +1,71 @@
+{
+  "hyperparameters": [
+    {
+      "name": "a_rate",
+      "type": "uniform_float",
+      "log": false,
+      "lower": 1.0,
+      "upper": 3.0,
+      "default": 2.0,
+      "q": null
+    },
+    {
+      "name": "cr0",
+      "type": "uniform_float",
+      "log": false,
+      "lower": 0.1,
+      "upper": 0.9,
+      "default": 0.5,
+      "q": null
+    },
+    {
+      "name": "f0",
+      "type": "uniform_float",
+      "log": false,
+      "lower": 0.1,
+      "upper": 0.9,
+      "default": 0.5,
+      "q": null
+    },
+    {
+      "name": "hm",
+      "type": "uniform_float",
+      "log": false,
+      "lower": 1.0,
+      "upper": 10.0,
+      "default": 5.5,
+      "q": null
+    },
+    {
+      "name": "npm",
+      "type": "uniform_float",
+      "log": false,
+      "lower": 1.0,
+      "upper": 5.0,
+      "default": 3.0,
+      "q": null
+    },
+    {
+      "name": "p",
+      "type": "uniform_float",
+      "log": false,
+      "lower": 0.05,
+      "upper": 0.25,
+      "default": 0.15,
+      "q": null
+    },
+    {
+      "name": "p_qbx",
+      "type": "uniform_float",
+      "log": false,
+      "lower": 0.01,
+      "upper": 0.05,
+      "default": 0.03,
+      "q": null
+    }
+  ],
+  "conditions": [],
+  "forbiddens": [],
+  "python_module_version": "0.6.1",
+  "json_format_version": 0.4
+}
