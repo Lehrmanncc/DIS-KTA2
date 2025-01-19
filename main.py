@@ -7,6 +7,7 @@ import logging
 from util.util import mk_dir
 from setup import get_configspace
 from algorithm.DIS_KTA2 import dis_kta2
+from tcs.dm import find_tradeoff_config
 
 
 if __name__ == "__main__":
@@ -42,3 +43,6 @@ if __name__ == "__main__":
 
     best_configs = [ConfigSpace.Configuration(cs, vector=ind.x) for ind in best_pop]
     print(f"best configs:{best_configs}, cost time:{run_time}")
+
+    tradeoff_config = find_tradeoff_config(best_configs, configs_history)
+    print(f"trade-off configs:{tradeoff_config}")
