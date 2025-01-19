@@ -8,7 +8,6 @@ from ioh import problem
 class MadDE(TA):
     def __init__(self, p_qbx=0.01, p=0.18, a_rate=2.3, hm=10, npm=2, f0=0.2, cr0=0.2):
         super().__init__()
-        # 最佳个体率
         self._p = p
         self._p_qbx = p_qbx
         self._f0 = f0
@@ -133,7 +132,6 @@ class MadDE(TA):
 
     @staticmethod
     def _binomial(x, v, Crs):
-        # 二项式交叉操作
         NP, dim = x.shape
         jrand = np.random.randint(dim, size=NP)
         u = np.where(np.random.rand(NP, dim) < Crs, v, x)
@@ -147,7 +145,6 @@ class MadDE(TA):
         self._pop = self._pop[ind]
 
     def _update_archive(self, old_id):
-        # 更新归档解
         if self._archive.shape[0] < self._arch_num:
             self._archive = np.append(self._archive, self._pop[old_id]).reshape(-1, self.dim)
         else:
@@ -155,7 +152,6 @@ class MadDE(TA):
 
     @staticmethod
     def _mean_wL(df, s):
-        # 计算加权平均值
         w = df / np.sum(df)
         if np.sum(w * s) > 0.000001:
             return np.sum(w * (s ** 2)) / np.sum(w * s)
@@ -222,19 +218,14 @@ class MadDE(TA):
 
         self._init_population()
         arch_fitness = copy.deepcopy(self.fitness)
-        # 根据适应度值对种群进行排序
         while self._fe < self.max_fes:
             self._sort()
             pop_num, dim = self._pop_num, self.dim
 
-            # top q%的个体：比self.__p大，直到达到最大maxfes等于它
             q = 2 * self._p - self._p * self._fe / self.max_fes
-            # 用于加权重组变异操作的权重，逐渐增加
             fa = 0.5 + 0.5 * self._fe / self.max_fes
-            # 随机选择NP个个体的CR与F值
             cr, f = self._choose_F_Cr()
 
-            # 当前种群随机选择3部分的个体
             mu = np.random.choice(3, size=pop_num, p=self._pm)
             p1 = self._pop[mu == 0]
             p2 = self._pop[mu == 1]
@@ -242,8 +233,6 @@ class MadDE(TA):
             p_best = self._pop[:max(int(self._p * pop_num), 2)]
             q_best = self._pop[:max(int(q * pop_num), 2)]
 
-            # 针对3部分的个体执行3种不同的变异
-            # 将pop_num个个体的F复制到dim维
             fs = f.repeat(dim).reshape(pop_num, dim)
             v1 = self._ctb_w_arc(p1, p_best, self._archive, fs[mu == 0])
             v2 = self._ctr_w_arc(p2, self._archive, fs[mu == 1])
@@ -285,7 +274,6 @@ class MadDE(TA):
 
             offspring_cost = arch_fitness[-len(offspring):,]
 
-            # 更新归档解
             optim_idx = np.where(offspring_cost < self.fitness)[0]
             non_optim_idx = np.where(offspring_cost >= self.fitness)[0]
             for i in non_optim_idx:
@@ -306,11 +294,9 @@ class MadDE(TA):
             else:
                 self._pm = np.ones(3) / 3
 
-            # 更新种群个体
             self._pop[optim_idx] = offspring[optim_idx]
             self.fitness = np.minimum(self.fitness, offspring_cost)
 
-            # 动态调整种群大小
             self._pop_num = int(
                 np.round(self._pop_num_max + (self._pop_num_min - self._pop_num_max) * self._fe / self.max_fes))
             self._arch_num = int(self._a_rate * self._pop_num)
@@ -319,7 +305,6 @@ class MadDE(TA):
             self.fitness = self.fitness[:self._pop_num]
             self._archive = self._archive[:self._arch_num]
 
-            # 更新全局最优解
             if np.min(self.fitness) < self.g_best:
                 self.g_best = np.min(self.fitness)
 

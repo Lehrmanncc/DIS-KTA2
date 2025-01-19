@@ -1,8 +1,8 @@
-from setup import get_train_instance, get_test_instance
-from ta.search_algorithm import create_algorithm
 import functools
 import numpy as np
 import multiprocessing
+from setup import get_train_instance, get_test_instance
+from ta.search_algorithm import create_algorithm
 
 
 def worker(seed, exp_seed, ta, fun_ids, instance_idx, train_ins_num, test_ins_num, mode, ins_dim, fix_dim, benchmark):

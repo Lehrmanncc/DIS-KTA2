@@ -2,7 +2,6 @@ import numpy as np
 from scipy.spatial.distance import pdist
 from util.util import cal_convergence
 from util.util import pure_diversity
-import logging
 
 
 def adaptive_sampling(cca_obj, cca_dec, cda_obj, cda_dec, davar, da, mu, p, phi, uncertain_flag=0):

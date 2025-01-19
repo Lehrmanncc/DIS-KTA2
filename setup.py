@@ -1,11 +1,14 @@
-from ConfigSpace.read_and_write import json as cs_json
-from optproblems.cec2005 import F1, F2, F3, F4, F5, F6, F7, F8, F9, F10, F11, F12
-from ioh import get_problem, ProblemClass
+import os
 import numpy as np
+
+from ioh import get_problem, ProblemClass
+from ConfigSpace.read_and_write import json as cs_json
 
 
 def get_configspace(algorithm_name):
-    with open(f'../../configspace/{algorithm_name}.json', 'r') as f:
+    current_path = os.path.abspath(__file__)
+    file_path = os.path.join(current_path, 'configspace', f'{algorithm_name}.json')
+    with open(file_path, 'r') as f:
         json_string = f.read()
         configspace = cs_json.read(json_string)
 
@@ -15,26 +18,8 @@ def get_configspace(algorithm_name):
 def get_train_instance(exp_seed, fun_ids, ins_idx, train_instances_num, ins_dim, fix_dim, benchmark="BBOB"):
     np.random.seed(seed=exp_seed)
     train_instances = []
-    if benchmark == "CEC":
-        if train_instances_num == 1:
-            train_instances = [F3(10)]
 
-        elif train_instances_num == 3:
-            train_instances = [F1(10), F4(10), F10(10)]
-
-        elif train_instances_num == 5:
-            train_instances = [F1(10), F3(10), F4(10), F6(10), F10(10)]
-
-        elif train_instances_num == 7:
-            train_instances = [F1(10), F3(10), F4(10), F5(10), F6(10), F8(10), F10(10)]
-
-        elif train_instances_num == 9:
-            train_instances = [F1(10), F3(10), F4(10), F5(10), F6(10), F8(10), F10(10), F11(10), F12(10)]
-
-        else:
-            print("train instances size error !")
-
-    elif benchmark == "BBOB":
+    if benchmark == "BBOB":
         if train_instances_num is None:
             raise ValueError("Train mode requires train_instances_num parameter.")
         else:
@@ -57,10 +42,8 @@ def get_train_instance(exp_seed, fun_ids, ins_idx, train_instances_num, ins_dim,
 def get_test_instance(exp_seed, test_func_ids, ins_idx, test_instances_num, ins_dim, fix_dim, benchmark="BBOB"):
     np.random.seed(seed=exp_seed)
     test_instances = []
-    if benchmark == "CEC":
-        test_instances = [F2(10), F9(10)]
 
-    elif benchmark == "BBOB":
+    if benchmark == "BBOB":
         if test_instances_num is None:
             raise ValueError("Test mode requires test_instances_num parameter.")
         else:

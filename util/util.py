@@ -8,7 +8,6 @@ from scipy import stats
 from scipy.spatial.distance import cdist
 from scipy.optimize import OptimizeResult
 from pymoo.indicators.hv import Hypervolume
-import skopt
 import matplotlib.pyplot as plt
 
 
