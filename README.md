@@ -4,7 +4,7 @@ This repository provides the **official implementation** of the paper:
 
 **Dynamic Instance Sampling for Multi-Objective Automatic Algorithm Configuration**  
 *Swarm and Evolutionary Computation*, Volume 97, August 2025, 102008  
-[Yuchen Li](https://github.com/lehrmanncc), [Handing Wang]  
+[Yuchen Li](https://github.com/lehrmanncc), [Handing Wang](https://github.com/HandingWang) 
 [https://doi.org/10.1016/j.swevo.2025.102008](https://doi.org/10.1016/j.swevo.2025.102008)
 
 ---
