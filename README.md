@@ -31,7 +31,7 @@ If you use this code in your research, please cite our paper:
 ```bibtex
 @article{liDynamicInstanceSampling2025,
   title   = {Dynamic Instance Sampling for Multi-Objective Automatic Algorithm Configuration},
-  author  = {Li, Yuchen and Wang, Handing},
+  author = {Yuchen Li and Handing Wang},
   journal = {Swarm and Evolutionary Computation},
   volume  = {97},
   pages   = {102008},
